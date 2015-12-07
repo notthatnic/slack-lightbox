@@ -1,6 +1,185 @@
-/*****
+/**
+ * utilities.css
+ *
+ * styles for all single-purpose, reusable utility classes (e.g. margins, borders, positioning, etc.)
+ **/
 
-utilities.css
-styles for all single-purpose, reusable utility classes (e.g. margins, borders, positioning, etc.)
+/* ==========================================================================
+   Positioning
+   ========================================================================== */
 
-*****/
+.u-position-absolute {
+  position: absolute;
+}
+
+.u-position-relative {
+  position: relative;
+}
+
+/* ==========================================================================
+   Floating & clearing
+   ========================================================================== */
+
+.u-float-right {
+  float: right;
+}
+
+.u-float-left {
+  float: left;
+}
+
+.u-clear-both {
+  clear: both;
+}
+
+.u-clear-right {
+  clear: right;
+}
+
+.u-clear-left {
+  clear: left;
+}
+
+/* ==========================================================================
+   Margins
+   ========================================================================== */
+
+.u-margin-1 {
+  margin: 1rem 1rem;
+}
+
+.u-margin-top-1 {
+  margin-top: 1rem;
+}
+
+.u-margin-bottom-1 {
+  margin-bottom: 1rem;
+}
+
+.u-margin-left-1 {
+  margin-left: 1rem;
+}
+
+.u-margin-right-1 {
+  margin-right: 1rem;
+}
+
+.u-margin-auto {
+  margin: auto;
+}
+
+.u-margin-top-auto {
+  margin-top: auto;
+}
+
+.u-margin-bottom-auto {
+  margin-bottom: auto;
+}
+
+.u-margin-left-auto {
+  margin-left: auto;
+}
+
+.u-margin-right-auto {
+  margin-right: auto;
+}
+
+
+.u-margin-half {
+  margin: .5rem .5rem;
+}
+
+.u-margin-top-half {
+  margin-top: .5rem;
+}
+
+.u-margin-bottom-half {
+  margin-bottom: .5rem;
+}
+
+.u-margin-left-half {
+  margin-left: .5rem;
+}
+
+.u-margin-right-half {
+  margin-right: .5rem;
+}
+
+.u-margin-nudge {
+  margin: .2rem .2rem;
+}
+
+.u-margin-top-nudge {
+  margin-top: .2rem;
+}
+
+.u-margin-bottom-nudge {
+  margin-bottom: .2rem;
+}
+
+.u-margin-left-nudge {
+  margin-left: .2rem;
+}
+
+.u-margin-right-nudge {
+  margin-right: .2rem;
+}
+
+/* ==========================================================================
+   Padding
+   ========================================================================== */
+
+.u-padding-half {
+  padding: .5rem .5rem;
+}
+
+.u-padding-top-half {
+  padding-top: .5rem;
+}
+
+.u-padding-bottom-half {
+  padding-bottom: .5rem;
+}
+
+.u-padding-left-half {
+  padding-left: .5rem;
+}
+
+.u-padding-right-half {
+  padding-right: .5rem;
+}
+
+.u-padding-1 {
+  padding: 1rem 1rem;
+}
+
+.u-padding-top-1 {
+  padding-top: 1rem;
+}
+
+.u-padding-bottom-1 {
+  padding-bottom: 1rem;
+}
+
+.u-padding-left-1 {
+  padding-left: 1rem;
+}
+
+.u-padding-right-1 {
+  padding-right: 1rem;
+}
+
+/* ==========================================================================
+   Flexbox utilities
+   ========================================================================== */
+.u-flex-alignitems-center {
+  align-items: center
+}
+
+.u-flex-justifycontent-spacebetween {
+  justify-content: space-between;
+}
+
+.u-flex-wrap {
+  flex-wrap: wrap;
+}
