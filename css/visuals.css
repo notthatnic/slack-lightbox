@@ -145,3 +145,60 @@ body {
 .v-boxshadow-inset-1 {
   box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
 }
+
+/* ==========================================================================
+   Loading spinner
+   ========================================================================== */
+.v-spinner:before,
+.v-spinner:after,
+.v-spinner {
+  border-radius: 50%;
+  width: .5rem;
+  height: .5rem;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.64s infinite ease-in-out;
+  animation: load7 1.64s infinite ease-in-out;
+}
+.v-spinner {
+  font-size: .9rem;
+  margin: 0 auto;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.v-spinner:before {
+  left: -1.5rem;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.v-spinner:after {
+  left: 1.5rem;
+}
+.v-spinner:before,
+.v-spinner:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+@-webkit-keyframes load7 {
+  0%,
+  100% {
+    box-shadow: 0 1rem 0 -.5rem #CCC;
+  }
+  50% {
+    box-shadow: 0 1rem 0 0 #CCC;
+  }
+}
+@keyframes load7 {
+  0%,
+  100% {
+    box-shadow: 0 1rem 0 -.5rem #CCC;
+  }
+  50% {
+    box-shadow: 0 1rem 0 0 #CCC;
+  }
