@@ -57,24 +57,29 @@
           <span class="u-margin-left-auto"><img src="http://placehold.it/15x15"></span>
         </header>
         <div class="s-flex u-flex-wrap">
-          <div class="v-spinner id-thumbs-spinner"></div>
+          <div class="id-thumbs-spinner v-spinner"></div>
           <span class="id-thumbs-error u-padding-left-1"></span>
+          <div class="id-thumbs-wrapper "></div>
         </div>
       </section>
 
 
     </aside>
   </section>
+  <script src="js/thumbs.js"></script>
   <script>
     var xhr = new XMLHttpRequest(),
-        imageData,
-        thumbError = document.getElementsByClassName('id-thumbs-error')[0],
-        thumbSpinner = document.getElementsByClassName('id-thumbs-spinner')[0];
+        thumbWrapper = document.getElementsByClassName('id-thumbs-wrapper')[0],
+        thumbSpinner = document.getElementsByClassName('id-thumbs-spinner')[0],
+        thumbError = document.getElementsByClassName('id-thumbs-error')[0];
 
     var transferComplete = function(e) {
+      var galleryData;
       if (this.status == 200) {
-        imageData = this.response;
+        galleryData = this.response;
         thumbSpinner.classList.add('u-hidden');
+
+        Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true);
       }
     };
 
@@ -82,8 +87,32 @@
       thumbError.innerHTML = 'Image data could not be loaded';
     };
 
+    var parseImgData = function(galleryObj) {
+      var trimmedGalleryArr = [],
+          imageItems = galleryObj.data.items,
+          element = {};
+
+      imageItems.forEach(function(item){
+        element = {};
+        element.src = item.link;
+        element.title = item.title;
+
+        // sometimes the imgur api returns links that don't have file extensions. Because we're looking for dummy
+        // data here, I'm going to just chuck out the ones that don't work
+        var extension = element['src'].substring(
+            element['src'].lastIndexOf('.') + 1).toLowerCase();
+        //if it's not a .jpg or .gif, don't add it to the return array
+        if(extension === 'jpg' || extension === 'gif') {
+          trimmedGalleryArr.push(element);
+        }
+      });
+
+      return trimmedGalleryArr;
+    };
+
     xhr.open('GET', 'https://api.imgur.com/3/gallery/t/Aww/top/day/0');
     xhr.setRequestHeader('Authorization', 'Client-ID 09d4b221f16a712');
+    xhr.responseType = 'json';
     xhr.addEventListener('load', transferComplete);
     xhr.addEventListener('error', transferFailed);
 
