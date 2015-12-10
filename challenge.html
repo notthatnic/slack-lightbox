@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/structure.css">
   <link rel="stylesheet" href="css/utilities.css">
   <link rel="stylesheet" href="css/visuals.css">
+  <link rel="stylesheet" href="css/ui-elements.css">
   <style>
     /* Critical CSS */
 
@@ -16,7 +17,8 @@
 </head>
 <body class="challenge s-flex-container">
   <header class="s-flex">
-    <div class="s-column-fixed s-column-220 v-bg-aubergine v-font-white u-padding-1">
+    <div class="s-column-fixed s-column-220 v-bg-aubergine v-font-white
+    u-padding-1">
       <h2 class="v-text-2 v-fontweight-bold">myGloriousTeam</h2>
     </div>
     <div class="s-column-fluid u-padding-1">
@@ -24,13 +26,28 @@
     </div>
   </header>
   <section class="s-flex s-full-height">
-    <div class="s-column-fixed s-column-220 v-bg-aubergine v-font-white-50 v-fontweight-light u-padding-1">
-      <h3 class="v-font-uppercase v-text-5 v-lineheight-1 v-fontweight-normal">Channels</h3>
+    <div class="s-column-fixed s-column-220 v-bg-aubergine v-font-white-50
+    v-fontweight-light u-padding-1">
+      <h3 class="v-font-uppercase v-text-5 v-lineheight-1 v-fontweight-normal">
+        Channels
+      </h3>
       <ul class="v-text-3 v-list-bulletless v-lineheight-1">
-        <li><span class="v-font-white-20 u-margin-right-nudge">#</span>fun-channel</li>
-        <li><span class="v-font-white-20 u-margin-right-nudge">#</span>less-fun-channel</li>
-        <li><span class="v-font-white-20 u-margin-right-nudge">#</span>this-channel</li>
-        <li><span class="v-font-white-20 u-margin-right-nudge">#</span>boring-channel</li>
+        <li>
+          <span class="v-font-white-20 u-margin-right-nudge">#</span>
+          fun-channel
+        </li>
+        <li>
+          <span class="v-font-white-20 u-margin-right-nudge">#</span>
+          less-fun-channel
+        </li>
+        <li>
+          <span class="v-font-white-20 u-margin-right-nudge">#</span>
+          this-channel
+        </li>
+        <li>
+          <span class="v-font-white-20 u-margin-right-nudge">#</span>
+          boring-channel
+        </li>
       </ul>
     </div>
     <div class="s-column-fluid u-padding-1 s-scrollbar">
@@ -40,26 +57,38 @@
       <header class="v-text-1 u-margin-bottom-1">
         About <span class="v-fontweight-bold">#this-channel</span>
       </header>
-      <section class="v-border-top v-bordercolor-lightgray u-padding-top-1
+      <section class="v-border-1-top v-bordercolor-lightgray u-padding-top-1
         u-padding-bottom-1 u-padding-right-half u-padding-left-half">
         <header class="s-flex u-flex-alignitems-center">
-          <span class="u-margin-right-half"><img src="http://placehold.it/25x25"></span>
-          <h4 class="v-text-2 v-lineheight-1 v-fontweight-normal v-font-gray">Channel details</h4>
-          <span class="u-margin-left-auto"><img src="http://placehold.it/15x15"></span>
+          <span class="u-margin-right-half">
+            <img src="http://placehold.it/25x25">
+          </span>
+          <h4 class="v-text-2 v-lineheight-1 v-fontweight-normal v-font-gray">
+            Channel details
+          </h4>
+          <span class="u-margin-left-auto">
+            <img src="http://placehold.it/15x15">
+          </span>
         </header>
       </section>
 
-      <section class="v-border-top v-bordercolor-lightgray u-padding-top-1
+      <section class="v-border-1-top v-bordercolor-lightgray u-padding-top-1
         u-padding-bottom-1 u-padding-right-half u-padding-left-half">
         <header class="s-flex u-margin-bottom-1">
-          <span class="u-margin-right-half"><img src="http://placehold.it/25x25"></span>
-          <h4 class="v-text-2 v-lineheight-1 v-fontweight-normal v-font-gray">Images</h4>
-          <span class="u-margin-left-auto"><img src="http://placehold.it/15x15"></span>
+          <span class="u-margin-right-half">
+            <img src="http://placehold.it/25x25">
+          </span>
+          <h4 class="v-text-2 v-lineheight-1 v-fontweight-normal v-font-gray">
+            Images
+          </h4>
+          <span class="u-margin-left-auto">
+            <img src="http://placehold.it/15x15">
+          </span>
         </header>
         <div class="s-flex u-flex-wrap">
-          <div class="id-thumbs-spinner v-spinner"></div>
+          <div class="id-thumbs-spinner ui-spinner u-margin-auto"></div>
           <span class="id-thumbs-error u-padding-left-1"></span>
-          <div class="id-thumbs-wrapper "></div>
+          <div class="id-thumbs-wrapper"></div>
         </div>
       </section>
 
@@ -67,6 +96,7 @@
     </aside>
   </section>
   <script src="js/thumbs.js"></script>
+  <script src="js/lightbox.js"></script>
   <script>
     var xhr = new XMLHttpRequest(),
         thumbWrapper = document.getElementsByClassName('id-thumbs-wrapper')[0],
@@ -79,7 +109,8 @@
         galleryData = this.response;
         thumbSpinner.classList.add('u-hidden');
 
-        Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true);
+        Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true,
+            createGallery);
       }
     };
 
@@ -96,18 +127,25 @@
         element = {};
         element.src = item.link;
         element.title = item.title;
+        element.height = item.height;
+        element.width = item.width;
 
-        // sometimes the imgur api returns links that don't have file extensions. Because we're looking for dummy
-        // data here, I'm going to just chuck out the ones that don't work
+        // DEMO CODE - because we're just using dummy data here, I'm going to
+        // just chuck out everything but jpgs
         var extension = element['src'].substring(
             element['src'].lastIndexOf('.') + 1).toLowerCase();
-        //if it's not a .jpg or .gif, don't add it to the return array
-        if(extension === 'jpg' || extension === 'gif') {
+        //if it's not a .jpg, don't add it to the return array
+        if(extension === 'jpg') {
           trimmedGalleryArr.push(element);
         }
       });
 
       return trimmedGalleryArr;
+    };
+
+    var createGallery = function() {
+
+      Lightbox.init('id-thumbs-wrapper');
     };
 
     xhr.open('GET', 'https://api.imgur.com/3/gallery/t/Aww/top/day/0');

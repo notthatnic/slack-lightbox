@@ -2,43 +2,84 @@
  * Thumbnail module.
  */
 
-var Thumbs = (function(){
+(function (root, factory) {
 
-  // create return object
-  var returnObject = {};
+  if (typeof define === 'function' && define.amd) {
+    define(factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.Thumbs = factory();
+  }
+
+}(this, function () {
+
+  /**
+   * bind event utility (private)
+   * @param {element} element DOM element to which to bind the event
+   * @param {event} event event to listen for
+   * @param {function} callback function to be executed on event
+   */
+  var _bind = function(element, event, callback) {
+      element.addEventListener(event, callback, false);
+  };
+
+  /**
+   * prevent default action utility (private)
+   * @param {event} event event to listen for
+   */
+  var _preventDefaultEvent = function(event) {
+    event.preventDefault();
+  };
 
   /**
    * create thumbnails from object (public)
    * @param {Array} dataArray array of image data objects
    * @param {element} $targetEl DOM element that thumbs should be appended to
-   * @param {Boolean} isLightboxReady indicates if thumbs should spawn a lightbox
+   * @param {boolean} preventDefault should the event on the image's wrapping
+   * link be stopped?
+   * @param {function} callback function to be executed once thumbs are loaded
    */
-  returnObject.paintThumbs = function(dataArray, $targetEl, isLightboxReady) {
+  var paintThumbs = function(dataArray, $targetEl, preventDefaultEvent,
+                                      callback) {
 
     // loop through dataObj. Expects each data point to have a src and title.
     dataArray.forEach(function(image){
 
       // create the DOM element
-      var $imageEl = document.createElement('img');
+      var $linkEl = document.createElement('a'),
+        $imageEl = document.createElement('img');
 
-      // add classes to the new element
-      $imageEl.classList.add('u-margin-right-nudge', 'v-borderradius-1', 'v-boxshadow-inset-1');
+      //wrap image in link
+      $linkEl.appendChild($imageEl);
+
+      // add classes to the new elements
+      $linkEl.classList.add('u-margin-right-nudge', 'class-thumbnail');
+      $imageEl.classList.add('v-borderradius-1',
+        'v-boxshadow-inset-1');
 
       // add necessary attributes: src, title, height, and width
+      $linkEl.setAttribute('href', image.src);
       $imageEl.setAttribute('src', image.src);
       $imageEl.setAttribute('title', image.title);
+      $imageEl.setAttribute('data-height', image.height);
+      $imageEl.setAttribute('data-width', image.width);
       $imageEl.setAttribute('height', '50px');
       $imageEl.setAttribute('width', '50px');
 
-      // check to see if these thumbs should spawn a lightbox and, if so, add data-attribute
-      if (isLightboxReady) {
-        $imageEl.setAttribute('data-lightbox', 'true');
-      }
-
       // append the new thumbnail element to the target container
-      $targetEl.appendChild($imageEl);
+      $targetEl.appendChild($linkEl);
+
+      if(preventDefaultEvent) {
+        _bind($linkEl, 'click', _preventDefaultEvent);
+      }
     });
+
+    callback();
   };
 
-  return returnObject;
-}());
+  // return object
+  return {
+    paintThumbs: paintThumbs
+  };
+}));

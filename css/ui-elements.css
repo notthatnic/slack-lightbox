@@ -1,0 +1,128 @@
+/**
+ * ui-elements.css
+ *
+ * styles for reusable, single-purpose UI components built out in CSS
+ **/
+
+/* ==========================================================================
+   Loading spinner
+   ========================================================================== */
+.ui-spinner:before,
+.ui-spinner:after,
+.ui-spinner {
+  border-radius: 50%;
+  width: .5rem;
+  height: .5rem;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: load7 1.64s infinite ease-in-out;
+  animation: load7 1.64s infinite ease-in-out;
+}
+.ui-spinner {
+  font-size: .9rem;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.ui-spinner:before {
+  left: -1.5rem;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.ui-spinner:after {
+  left: 1.5rem;
+}
+.ui-spinner:before,
+.ui-spinner:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+@-webkit-keyframes load7 {
+  0%,
+  100% {
+    box-shadow: 0 1rem 0 -.5rem #CCC;
+  }
+  50% {
+    box-shadow: 0 1rem 0 0 #CCC;
+  }
+}
+@keyframes load7 {
+  0%,
+  100% {
+    box-shadow: 0 1rem 0 -.5rem #CCC;
+  }
+  50% {
+    box-shadow: 0 1rem 0 0 #CCC;
+  }
+}
+
+/* ==========================================================================
+   Chevrons
+   ========================================================================== */
+
+.ui-chevron::before {
+  border-style: solid;
+  border-width: 0.2rem 0.2rem 0 0;
+  content: '';
+  display: inline-block;
+  height: 0.45rem;
+  left: 0.15rem;
+  position: relative;
+  top: 0.15rem;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 0.45rem;
+  border-color: #FFF;
+}
+
+.ui-chevron.right:before {
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.ui-chevron.left:before {
+  left: 0.25em;
+  transform: rotate(-135deg);
+}
+
+/* ==========================================================================
+   Backdrop
+   ========================================================================== */
+
+.ui-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ==========================================================================
+   Round buttons
+   ========================================================================== */
+.ui-round-button,
+.ui-round-button-small {
+  border-radius: 50%;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+}
+.ui-round-button {
+  height: 50px;
+  width: 50px;
+}
+
+.ui-round-button-small {
+  height: 35px;
+  width: 35px;
+}
+
+.ui-round-button:disabled,
+.ui-round-button-small:disabled {
+  cursor: default;
+}

@@ -1,7 +1,8 @@
 /**
  * visuals.css
  *
- * this file contains styles for all visual styling (e.g. fonts, colors, borders, shadows, etc.)
+ * this file contains styles for all visual styling (e.g. fonts, colors,
+ * borders, shadows, etc.)
  */
 
 
@@ -83,8 +84,8 @@ body {
 /* line-heights
    ========================================================================== */
 
-/* not totally happy with this naming because wile it follows the convention of the font-sizing naming,
-   it isn't as immediately readable */
+/* not totally happy with this naming because wile it follows the convention of
+   the font-sizing naming, it isn't as immediately readable */
 .v-lineheight-1 {
   line-height: 1.5rem;
 }
@@ -110,6 +111,18 @@ body {
   background-color: #333;
 }
 
+.v-bg-black {
+  background-color: #000;
+}
+
+.v-bg-black-50 {
+  background-color: hsla(0, 0%, 0%, .5);
+}
+
+.v-bg-black-75 {
+  background-color: hsla(0, 0%, 0%, .75);
+}
+
 .v-bg-aubergine {
   background-color: #4D394B;
 }
@@ -118,12 +131,20 @@ body {
    Borders
    ========================================================================== */
 
-.v-border-top {
-  border-top: 1px solid #ccc;
+.v-border-1 {
+  border: 1px solid #CCC;
+}
+
+.v-border-1-top {
+  border-top: 1px solid #CCC;
+}
+
+.v-bordercolor-white {
+  border-color: #FFF;
 }
 
 .v-bordercolor-lightgray {
-  border-color: #e8e8e8;
+  border-color: #E8E8E8;
 }
 
 .v-borderradius-1 {
@@ -147,58 +168,28 @@ body {
 }
 
 /* ==========================================================================
-   Loading spinner
+   Opacity
    ========================================================================== */
-.v-spinner:before,
-.v-spinner:after,
-.v-spinner {
-  border-radius: 50%;
-  width: .5rem;
-  height: .5rem;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation: load7 1.64s infinite ease-in-out;
-  animation: load7 1.64s infinite ease-in-out;
+
+.v-opacity-100 {
+  opacity: 1;
 }
-.v-spinner {
-  font-size: .9rem;
-  margin: 0 auto;
-  position: relative;
-  text-indent: -9999em;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation-delay: -0.16s;
-  animation-delay: -0.16s;
+
+.v-opacity-50 {
+  opacity: .5;
 }
-.v-spinner:before {
-  left: -1.5rem;
-  -webkit-animation-delay: -0.32s;
-  animation-delay: -0.32s;
+
+.v-opacity-25 {
+  opacity: .25;
 }
-.v-spinner:after {
-  left: 1.5rem;
+
+/* ==========================================================================
+   Cursors
+   ========================================================================== */
+.v-cursor-pointer {
+  cursor: pointer;
 }
-.v-spinner:before,
-.v-spinner:after {
-  content: '';
-  position: absolute;
-  top: 0;
+
+.v-cursor-arrow {
+  cursor: default;
 }
-@-webkit-keyframes load7 {
-  0%,
-  100% {
-    box-shadow: 0 1rem 0 -.5rem #CCC;
-  }
-  50% {
-    box-shadow: 0 1rem 0 0 #CCC;
-  }
-}
-@keyframes load7 {
-  0%,
-  100% {
-    box-shadow: 0 1rem 0 -.5rem #CCC;
-  }
-  50% {
-    box-shadow: 0 1rem 0 0 #CCC;
-  }
