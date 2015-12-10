@@ -43,6 +43,16 @@
   };
 
   /**
+   * unbind event utility (private)
+   * @param {element} element DOM element from which to unbind the event
+   * @param {event} event event to listen for
+   * @param {function} callback function to be executed on event
+   */
+  var _unbind = function(element, event, callback) {
+    element.removeEventListener(event, callback, false);
+  };
+
+  /**
    * event handler for previous button (private)
    * @param {event} event button click event
    */
@@ -104,6 +114,23 @@
     _bind($previousButtonEl, 'click', _previousButtonEventHandler);
     _bind($nextButtonEl, 'click', _nextButtonEventHandler);
     _bind($closeButtonEl, 'click', _closeButtonEventHandler);
+  };
+
+  var keyboardEventHandler = function(event) {
+    switch(event.keyCode) {
+      // Esc
+      case 27:
+        closeLightbox();
+        break;
+      // Left arrow
+      case 37:
+        showPreviousImage();
+        break;
+      // Right arrow
+      case 39:
+        showNextImage();
+        break;
+    }
   };
 
   /**
@@ -220,6 +247,9 @@
 
     // load the image based on newly set currentImageIndex
     _loadImage(currentImageIndex);
+
+    // bind keyboard events
+    _bind(document, 'keydown', keyboardEventHandler);
 
     // unhide the overlay
     $overlayEl.classList.remove('u-hidden');
@@ -387,7 +417,14 @@
    */
   var closeLightbox = function() {
     currentImageIndex = 0;
+
+    // remove keyboard event handlers when lightbox closes for tidiness
+    _unbind(document, 'keydown', keyboardEventHandler);
+
+    // add opacity class so lightbox fades
     $overlayEl.classList.add('v-opacity-0');
+
+    // wait until after fade to set as hidden
     setTimeout(function() {
       $overlayEl.classList.add('u-hidden');
     }, 250);
