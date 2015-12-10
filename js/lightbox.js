@@ -313,8 +313,9 @@
 
     // when the image loads, hide the spinner and show the image container
     $imageEl.onload = function() {
-      _hideSpinner();
+
       setTimeout(function() {
+        _hideSpinner();
         $imageContainerEl.classList.remove('u-hidden');
         setTimeout(function() {
           $imageContainerEl.classList.remove('v-opacity-0');
@@ -350,14 +351,14 @@
    */
   var _getNewImageDimensions = function(height, width) {
 
-    var resizedDimensions = {},
+    var resizedDimensions = {
+      width: width,
+      height: height
+    },
       imageRatio = height / width;
 
     //there has to be a better way to do this
-    if (width <= maxImageWidth && height <= maxImageHeight) {
-      resizedDimensions.width = width;
-      resizedDimensions.height = height;
-    } else if(width >= maxImageWidth && imageRatio <= 1){
+    if(width >= maxImageWidth && imageRatio <= 1){
       resizedDimensions.width = maxImageWidth;
       resizedDimensions.height = resizedDimensions.width * imageRatio;
 
