@@ -48,7 +48,7 @@
 
       // create the DOM element
       var $linkEl = document.createElement('a'),
-        $imageEl = document.createElement('img');
+        $imageEl = new Image();
 
       //wrap image in link
       $linkEl.appendChild($imageEl);
@@ -60,12 +60,12 @@
 
       // add necessary attributes: src, title, height, and width
       $linkEl.setAttribute('href', image.src);
-      $imageEl.setAttribute('src', image.src);
-      $imageEl.setAttribute('title', image.title);
+      $imageEl.src = image.src;
+      $imageEl.title = image.title;
+      $imageEl.height = 50;
+      $imageEl.width = 50;
       $imageEl.setAttribute('data-height', image.height);
       $imageEl.setAttribute('data-width', image.width);
-      $imageEl.setAttribute('height', '50px');
-      $imageEl.setAttribute('width', '50px');
 
       // append the new thumbnail element to the target container
       $targetEl.appendChild($linkEl);

@@ -6,6 +6,7 @@
 
 /* ==========================================================================
    Loading spinner
+   (don't know if I need these vendor prefixes, but leaving in for safety)
    ========================================================================== */
 .ui-spinner:before,
 .ui-spinner:after,
@@ -86,7 +87,7 @@
 }
 
 .ui-chevron.left:before {
-  left: 0.25em;
+  left: 0.25rem;
   transform: rotate(-135deg);
 }
 
@@ -108,8 +109,8 @@
    Frame
    ========================================================================== */
 .ui-frame {
-  max-height: calc(100% - 64px);
-  max-width: calc(100% - 64px);
+  max-height: calc(100% - 4rem);
+  max-width: calc(100% - 4rem);
   height: auto;
   width: auto;
 }
@@ -126,13 +127,13 @@
   outline: 0;
 }
 .ui-round-button {
-  height: 50px;
-  width: 50px;
+  height: 3rem;
+  width: 3rem;
 }
 
 .ui-round-button-small {
-  height: 35px;
-  width: 35px;
+  height: 2rem;
+  width: 2rem;
 }
 
 .ui-round-button:disabled,

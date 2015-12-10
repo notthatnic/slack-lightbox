@@ -40,12 +40,12 @@
   top: 0;
 }
 
-.u-top-neg15 {
-  top: -15px;
+.u-top-neg1 {
+  top: -1rem;
 }
 
-.u-right-neg15 {
-  right: -15px;
+.u-right-neg1 {
+  right: -1rem;
 }
 /* ==========================================================================
    Floating & clearing

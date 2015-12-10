@@ -22,6 +22,7 @@
     $imageContainerEl,
     $imageEl,
     $captionEl,
+    $imageActionsEl,
     $spinnerEl,
     gallery = [],
     currentImageIndex = 0,
@@ -30,7 +31,8 @@
     captionHeight = 64,
     maxImageHeight = window.innerHeight - (navButtonMargin * 2) - captionHeight,
     maxImageWidth = window.innerWidth - ((navButtonWidth * 2) +
-      (navButtonMargin * 4)); //magic numbers are magic
+      (navButtonMargin * 4)),
+    downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>';
 
   /**
    * bind event utility (private)
@@ -187,8 +189,14 @@
     // create caption element, add classes, and append to image container
     $captionEl = document.createElement('div');
     $captionEl.classList.add('v-bg-black', 'v-font-white', 'u-height-4',
-      'u-position-relative');
+      'u-position-relative', 's-flex', 'u-flex-alignitems-center');
     $imageContainerEl.appendChild($captionEl);
+
+    $imageActionsEl = document.createElement('a');
+    $imageActionsEl.classList.add('u-margin-left-auto', 'u-margin-right-1',
+      'v-font-white');
+    $imageActionsEl.setAttribute('target', '_blank');
+    $imageActionsEl.innerHTML = downloadIcon;
 
     // create next button, add classes, add chevron, and append to overlay
     $nextButtonEl = document.createElement('button');
@@ -201,7 +209,7 @@
     $closeButtonEl = document.createElement('button');
     $closeButtonEl.classList.add('id-close-button', 'ui-round-button-small',
       'v-bg-black-75', 'v-bordercolor-white', 'v-font-white',
-      'u-position-absolute', 'u-top-neg15', 'u-right-neg15');
+      'u-position-absolute', 'u-top-neg1', 'u-right-neg1');
     $closeButtonEl.innerHTML = 'X';
     $imageContainerEl.appendChild($closeButtonEl);
 
@@ -296,6 +304,8 @@
     $captionEl.innerHTML = '<p class="u-margin-0 u-padding-1' +
       ' u-maxwidth-75 u-truncate">' +
       currentImage.title + '</p>';
+    $captionEl.appendChild($imageActionsEl);
+    $imageActionsEl.setAttribute('href', currentImage.src);
 
     // size the caption wrapper to the same size as image
     $captionEl.setAttribute('style', 'width: ' + resizedDimensions.width +
