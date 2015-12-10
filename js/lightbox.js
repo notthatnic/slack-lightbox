@@ -19,13 +19,16 @@
     $closeButtonEl,
     $imageContainerEl,
     $imageEl,
+    $captionEl,
+    $spinnerEl,
     gallery = [],
-    galleryCollection = [],
-    imagesMap = [],
-    imagesElements = [],
-    imagedEventHandlers = {},
     currentImageIndex = 0,
-    currentGallery = -1;
+    navButtonWidth = 50,
+    navButtonMargin = 16,
+    captionHeight = 64,
+    maxImageHeight = window.innerHeight - (navButtonMargin * 2) - captionHeight,
+    maxImageWidth = window.innerWidth - ((navButtonWidth * 2) +
+      (navButtonMargin * 4)); //magic numbers are magic
 
   var _bind = function(element, event, callback) {
     element.addEventListener(event, callback, false);
@@ -34,13 +37,11 @@
   var _previousButtonEventHandler = function(event) {
     event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
     showPreviousImage();
-    console.log('currentImageIndex', currentImageIndex);
   };
 
   var _nextButtonEventHandler = function(event) {
     event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
     showNextImage();
-    console.log('currentImageIndex', currentImageIndex);
   };
 
   var _closeButtonEventHandler = function(event) {
@@ -71,7 +72,6 @@
   };
 
   var _buildUI = function() {
-    console.log('build UI');
     $overlayEl = document.querySelector('id-overlay');
     // Check if the overlay already exists
     if($overlayEl) {
@@ -92,28 +92,38 @@
     // Create all necessary buttons
     $previousButtonEl = document.createElement('button');
     $previousButtonEl.classList.add('id-previous-button', 'ui-round-button',
-      'v-bg-black-75', 'v-bordercolor-white');
+      'v-bg-black-75', 'v-bordercolor-white', 'u-margin-left-1');
     $previousButtonEl.innerHTML = '<span class="ui-chevron left"></span>';
     $overlayEl.appendChild($previousButtonEl);
 
+    $spinnerEl = document.createElement('span');
+    $spinnerEl.classList.add('ui-spinner', 'u-hidden');
+
     $imageContainerEl = document.createElement('div');
-    $imageContainerEl.classList.add('id-image-container');
+    $imageContainerEl.classList.add('id-image-container',
+      'u-position-relative');
     $imageContainerEl.innerHTML = '';
     $overlayEl.appendChild($imageContainerEl);
 
     $imageEl = document.createElement('img');
+    $imageEl.classList.add('u-display-block');
     $imageContainerEl.appendChild($imageEl);
+
+    $captionEl = document.createElement('div');
+    $captionEl.classList.add('v-bg-black', 'v-font-white', 'u-height-4',
+      'u-position-relative');
+    $imageContainerEl.appendChild($captionEl);
 
     $nextButtonEl = document.createElement('button');
     $nextButtonEl.classList.add('id-next-button', 'ui-round-button',
-      'v-bg-black-75', 'v-bordercolor-white');
+      'v-bg-black-75', 'v-bordercolor-white', 'u-margin-right-1');
     $nextButtonEl.innerHTML = '<span class="ui-chevron right"></span>';
     $overlayEl.appendChild($nextButtonEl);
 
     $closeButtonEl = document.createElement('button');
     $closeButtonEl.classList.add('id-close-button', 'ui-round-button-small',
       'v-bg-black-75', 'v-bordercolor-white', 'v-font-white',
-      'u-position-absolute');
+      'u-position-absolute', 'u-top-neg15', 'u-right-neg15');
     $closeButtonEl.innerHTML = 'X';
     $imageContainerEl.appendChild($closeButtonEl);
 
@@ -149,7 +159,11 @@
 
   var _loadImage = function(currentImageIndex) {
 
-    var currentImage = gallery[currentImageIndex];
+    $imageContainerEl.classList.add('u-hidden');
+    $spinnerEl.classList.remove('u-hidden');
+
+    var currentImage = gallery[currentImageIndex],
+      resizedDimensions = _resizeImage(currentImage.height, currentImage.width);
 
     if(currentImageIndex === gallery.length - 1) {
       _disableButton($nextButtonEl);
@@ -163,12 +177,21 @@
       _enableButton($previousButtonEl);
     }
 
+
+
     $imageEl.onload = function() {
-      console.log('image loaded')
+      $spinnerEl.classList.add('u-hidden');
+      $imageContainerEl.classList.remove('u-hidden');
     };
 
+    $captionEl.innerHTML = '<p class="u-margin-0 u-padding-1' +
+      ' u-maxwidth-75 u-truncate">' +
+      currentImage.title + '</p>';
+    $captionEl.setAttribute('style', 'width: ' + resizedDimensions.width +
+      'px;');
+    $imageEl.setAttribute('height', resizedDimensions.height);
+    $imageEl.setAttribute('width', resizedDimensions.width);
     $imageEl.setAttribute('src', currentImage.src);
-
 
   };
 
@@ -178,6 +201,36 @@
 
   var _hideSpinner = function() {
 
+  };
+
+  var _resizeImage = function(height, width) {
+
+    var resizedDimensions = {},
+      imageRatio = height / width;
+
+    //there has to be a better way to do this
+    if (width <= maxImageWidth && height <= maxImageHeight) {
+      resizedDimensions.width = width;
+      resizedDimensions.height = height;
+    } else if(width >= maxImageWidth && imageRatio <= 1){
+      resizedDimensions.width = maxImageWidth;
+      resizedDimensions.height = resizedDimensions.width * imageRatio;
+
+      if(resizedDimensions.height > maxImageHeight) {
+        resizedDimensions.height = maxImageHeight;
+        resizedDimensions.width = resizedDimensions.height / imageRatio;
+      }
+    } else if(height >= maxImageHeight){
+      resizedDimensions.height = maxImageHeight;
+      resizedDimensions.width = resizedDimensions.height / imageRatio;
+
+      if(resizedDimensions.width > maxImageWidth) {
+        resizedDimensions.width = maxImageWidth;
+        resizedDimensions.height = resizedDimensions.width / imageRatio;
+      }
+    }
+
+    return resizedDimensions;
   };
 
   var _enableButton = function($buttonEl) {
@@ -205,9 +258,7 @@
 
   var closeLightbox = function() {
     currentImageIndex = 0;
-
     $overlayEl.classList.add('u-hidden');
-    console.log('closeLightbox');
   };
 
   return {
