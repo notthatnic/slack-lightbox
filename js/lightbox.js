@@ -153,7 +153,7 @@
     $overlayEl.appendChild($imageContainerEl);
 
     // create image element, add classes, and append to image container
-    $imageEl = document.createElement('img');
+    $imageEl = new Image();
     $imageEl.classList.add('u-display-block');
     $imageContainerEl.appendChild($imageEl);
 
@@ -262,8 +262,6 @@
       _enableButton($previousButtonEl);
     }
 
-
-
     // update the caption text
     $captionEl.innerHTML = '<p class="u-margin-0 u-padding-1' +
       ' u-maxwidth-75 u-truncate">' +
@@ -273,15 +271,9 @@
     $captionEl.setAttribute('style', 'width: ' + resizedDimensions.width +
       'px;');
 
-    // apply resized dimensions to image and set image source
-    $imageEl.setAttribute('height', resizedDimensions.height);
-    $imageEl.setAttribute('width', resizedDimensions.width);
-    $imageEl.setAttribute('src', currentImage.src);
-
     // when the image loads, hide the spinner and show the image container
     $imageEl.onload = function() {
       _hideSpinner();
-
       setTimeout(function() {
         $imageContainerEl.classList.remove('u-hidden');
         setTimeout(function() {
@@ -289,6 +281,11 @@
         }, 50);
       }, 25);
     };
+
+    // apply resized dimensions to image and set image source
+    $imageEl.setAttribute('height', resizedDimensions.height);
+    $imageEl.setAttribute('width', resizedDimensions.width);
+    $imageEl.src = currentImage.src;
 
   };
 
