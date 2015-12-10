@@ -123,6 +123,7 @@
   border-width: 2px;
   border-style: solid;
   cursor: pointer;
+  outline: 0;
 }
 .ui-round-button {
   height: 50px;

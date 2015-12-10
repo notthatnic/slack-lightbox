@@ -103,18 +103,18 @@
         thumbSpinner = document.getElementsByClassName('id-thumbs-spinner')[0],
         thumbError = document.getElementsByClassName('id-thumbs-error')[0];
 
-    var transferComplete = function(e) {
+    var transferComplete = function(event) {
       var galleryData;
       if (this.status == 200) {
         galleryData = this.response;
         thumbSpinner.classList.add('u-hidden');
 
         Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true,
-            createGallery);
+            startLightbox);
       }
     };
 
-    var transferFailed = function(e) {
+    var transferFailed = function(event) {
       thumbError.innerHTML = 'Image data could not be loaded';
     };
 
@@ -134,6 +134,7 @@
         // just chuck out everything but jpgs
         var extension = element['src'].substring(
             element['src'].lastIndexOf('.') + 1).toLowerCase();
+
         //if it's not a .jpg, don't add it to the return array
         if(extension === 'jpg') {
           trimmedGalleryArr.push(element);
@@ -143,8 +144,7 @@
       return trimmedGalleryArr;
     };
 
-    var createGallery = function() {
-
+    var startLightbox = function() {
       Lightbox.init('id-thumbs-wrapper');
     };
 
