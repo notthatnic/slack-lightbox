@@ -55,8 +55,12 @@
 
       // add classes to the new elements
       $linkEl.classList.add('u-margin-right-nudge', 'class-thumbnail');
-      $imageEl.classList.add('v-borderradius-quarter',
-        'v-boxshadow-inset-1');
+      $imageEl.classList.add('v-borderradius-quarter', 'v-boxshadow-inset-1',
+        'v-fade', 'v-opacity-100', 'v-opacity-0');
+
+      $imageEl.onload = function() {
+        $imageEl.classList.remove('v-opacity-0');
+      };
 
       // add necessary attributes: src, title, height, and width
       $linkEl.setAttribute('href', image.src);
