@@ -48,28 +48,36 @@
 
       // create the DOM element
       var $linkEl = document.createElement('a'),
-        $imageEl = new Image();
+        $imageEl = document.createElement('div'),
+        $imageLoaderEl = new Image();
 
-      //wrap image in link
+      // wrap image in link
       $linkEl.appendChild($imageEl);
 
       // add classes to the new elements
-      $linkEl.classList.add('u-margin-right-nudge', 'class-thumbnail');
+      $linkEl.classList.add('u-margin-right-nudge', 'class-thumbnail',
+        'u-display-inlineblock');
       $imageEl.classList.add('v-borderradius-quarter', 'v-boxshadow-inset-1',
-        'v-fade', 'v-opacity-100', 'v-opacity-0');
+        'v-fade', 'v-opacity-100', 'v-opacity-0', 'u-bgsize-cover',
+        'u-bgposition-center', 'u-bgrepeat-none');
 
-      $imageEl.onload = function() {
+      // being sneaky...since background images don't have an onload event
+      // I'm using an actual image element to make sure it loads before
+      // displaying. TODO: figure out if there are performance implications
+      $imageLoaderEl.onload = function() {
         $imageEl.classList.remove('v-opacity-0');
       };
 
+      $imageLoaderEl.src = image.src;
+
       // add necessary attributes: src, title, height, and width
       $linkEl.setAttribute('href', image.src);
-      $imageEl.src = image.src;
-      $imageEl.title = image.title;
-      $imageEl.height = 50;
-      $imageEl.width = 50;
+      $imageEl.setAttribute('style',
+        'background-image: url(' + image.src + '); height: 50px; width: 50px;');
+      $imageEl.setAttribute('title', image.title);
       $imageEl.setAttribute('data-height', image.height);
       $imageEl.setAttribute('data-width', image.width);
+      $imageEl.setAttribute('data-src', image.src);
 
       // append the new thumbnail element to the target container
       $targetEl.appendChild($linkEl);

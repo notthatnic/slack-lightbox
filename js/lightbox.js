@@ -235,7 +235,7 @@
       }
 
       // store all relevant details in an object
-      imageDetails.src = image.getAttribute('src');
+      imageDetails.src = image.getAttribute('data-src');
       imageDetails.title = image.getAttribute('title');
       imageDetails.height = image.getAttribute('data-height');
       imageDetails.width = image.getAttribute('data-width');

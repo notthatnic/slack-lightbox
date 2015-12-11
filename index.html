@@ -45,7 +45,7 @@
     <p>The description of the challenge, as I receieved it, is as follows:</p>
     <blockquote class="v-font-italics u-margin-left-half">
       <p>This exercise is meant to demonstrate:</p>
-      <ul class="v-list-insidebullet">
+      <ul class="u-margin-left-1">
         <li>The ability to access to a public API and successfully retrieve data
           from it;</li>
         <li>The ability to display that data on a page using only native
@@ -121,7 +121,7 @@
     <p>
       I decided to use an atomic/functional approach to the styles, because:
     </p>
-    <ul class="v-list-insidebullet">
+    <ul class="u-margin-left-1">
       <li>
         it's easier to make small changes to visual components without
         fighting inheritance and specificity
@@ -151,7 +151,7 @@
     <p>
       The current implementation does not respond to window resize. At a
       minimum, the overlay should resize with window resize, but really both
-      the overlay and images would resize. Ideally, the buttons would also
+      the overlay and images should resize. Ideally, the buttons would also
       shrink below a certain breakpoint.
     </p>
 
@@ -159,8 +159,11 @@
       Make the lightbox module more reusable
     </p>
 
-    <ul class="v-list-insidebullet">
-      <li>Allow developers to customize the lightbox actions</li>
+    <ul class="u-margin-left-1">
+      <li>
+        Allow developers to customize the lightbox actions (instead of
+        automatically appending the download action)
+      </li>
       <li>
         Allow for multiple but distinct galleries to be instantiated on a single
         page
@@ -169,23 +172,24 @@
     </ul>
 
     <p class="v-text-4 v-fontweight-bold">Improve the UI</p>
-    <ul class="v-list-insidebullet">
-
-      <li>Smooth out the loading of the thumbnails with transitions</li>
-      <li>Clip thumbnail background</li>
+    <ul class="u-margin-left-1">
       <li>
         Build out a 'more images' experience. A good approach would be to use
         a similar pattern as the current 'Shared Files' feature in Slack. At
-        a certain number of thumbnails, a 'View all images' link is provided.
-        That link would take users to a paginated image list experience.
+        a certain number of thumbnails, a 'View all images' link would be
+        provided. That link would take users to a paginated image list
+        experience.
       </li>
-      <li>Develop a better icon strategy</li>
+      <li>
+        Develop a better icon strategy. Right now, for time, I'm just using
+        FontAwesome.
+      </li>
     </ul>
 
     <p class="v-text-4 v-fontweight-bold">
       Optimize the page for percieved load time
     </p>
-    <ul class="v-list-insidebullet">
+    <ul class="u-margin-left-1">
       <li>JS and CSS files should be minified and concatenated</li>
       <li>Resources should be gzipped or otherwise compressed</li>
       <li>
@@ -195,7 +199,7 @@
     </ul>
 
     <p class="v-text-4 v-fontweight-bold">Improve the build process</p>
-    <ul class="v-list-insidebullet">
+    <ul class="u-margin-left-1">
       <li>
         Use a css pre/post-processor (preferably homegrown). At a minimum, it's
         faster and safer to store things like colors in variables that get
