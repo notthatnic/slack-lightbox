@@ -13,14 +13,6 @@
   display: none;
 }
 
-.u-invisible {
-  visibility: hidden;
-}
-
-.u-visible {
-  visibility: visible;
-}
-
 .u-display-block {
   display: block;
 }
@@ -40,10 +32,6 @@
   position: relative;
 }
 
-.u-top-0 {
-  top: 0;
-}
-
 .u-top-neg1 {
   top: -1rem;
 }
@@ -53,6 +41,7 @@
 }
 /* ==========================================================================
    Floating & clearing
+   not used, left in as an example
    ========================================================================== */
 
 .u-float-right {
@@ -78,18 +67,6 @@
 /* ==========================================================================
    Margins
    ========================================================================== */
-
-.u-margin-0 {
-  margin: 0;
-}
-
-.u-margin-top-0 {
-  margin-top: 0;
-}
-
-.u-margin-1 {
-  margin: 1rem 1rem;
-}
 
 .u-margin-top-1 {
   margin-top: 1rem;
@@ -119,34 +96,10 @@
   margin: 0 auto;
 }
 
-.u-margin-top-auto {
-  margin-top: auto;
-}
-
-.u-margin-bottom-auto {
-  margin-bottom: auto;
-}
-
 .u-margin-left-auto {
   margin-left: auto;
 }
 
-.u-margin-right-auto {
-  margin-right: auto;
-}
-
-
-.u-margin-half {
-  margin: .5rem .5rem;
-}
-
-.u-margin-top-half {
-  margin-top: .5rem;
-}
-
-.u-margin-bottom-half {
-  margin-bottom: .5rem;
-}
 
 .u-margin-left-half {
   margin-left: .5rem;
@@ -156,16 +109,8 @@
   margin-right: .5rem;
 }
 
-.u-margin-nudge {
-  margin: .2rem .2rem;
-}
-
 .u-margin-top-nudge {
   margin-top: .2rem;
-}
-
-.u-margin-bottom-nudge {
-  margin-bottom: .2rem;
 }
 
 .u-margin-left-nudge {
@@ -176,29 +121,17 @@
   margin-right: .2rem;
 }
 
+.u-margin-0 {
+  margin: 0;
+}
+
+.u-margin-top-0 {
+  margin-top: 0;
+}
+
 /* ==========================================================================
    Padding
    ========================================================================== */
-
-.u-padding-half {
-  padding: .5rem .5rem;
-}
-
-.u-padding-top-half {
-  padding-top: .5rem;
-}
-
-.u-padding-bottom-half {
-  padding-bottom: .5rem;
-}
-
-.u-padding-left-half {
-  padding-left: .5rem;
-}
-
-.u-padding-right-half {
-  padding-right: .5rem;
-}
 
 .u-padding-1 {
   padding: 1rem 1rem;
@@ -228,6 +161,22 @@
   padding-left: 2rem;
 }
 
+.u-padding-top-half {
+  padding-top: .5rem;
+}
+
+.u-padding-bottom-half {
+  padding-bottom: .5rem;
+}
+
+.u-padding-left-half {
+  padding-left: .5rem;
+}
+
+.u-padding-right-half {
+  padding-right: .5rem;
+}
+
 .u-padding-left-0 {
   padding-left: 0;
 }
@@ -238,10 +187,6 @@
 
 .u-flex-alignitems-center {
   align-items: center;
-}
-
-.u-flex-alignitems-stretch {
-  align-items: stretch;
 }
 
 .u-flex-justifycontent-spacebetween {
@@ -259,26 +204,6 @@
 /* ==========================================================================
    Sizing
    ========================================================================== */
-
-.u-viewportheight-100 {
-  height: 100vh;
-}
-
-.u-viewportwidth-100 {
-  width: 100vw;
-}
-
-.u-minheight-100 {
-  min-height: 100%;
-}
-
-.u-maxheight-100 {
-  max-height: 100%;
-}
-
-.u-maxwidth-100 {
-  max-width: 100%;
-}
 
 .u-maxwidth-75 {
   max-width: 75%;

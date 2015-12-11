@@ -35,6 +35,10 @@ body {
   color: #555459;
 }
 
+.v-font-lightgray {
+  color: #CCCCCC;
+}
+
 .v-font-yellow {
   color: #dfa941;
 }
@@ -218,10 +222,6 @@ body {
 
 .v-list-bulletless {
   list-style: none;
-}
-
-.v-list-insidebullet {
-  list-style-position: inside;
 }
 
 /* ==========================================================================

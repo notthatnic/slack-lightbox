@@ -80,7 +80,7 @@ var parseImgData = function(galleryObj) {
     element.width = item.width;
 
     // DEMO CODE - because we're just using dummy data here, I'm going to
-    // just chuck out everything but jpgs
+    // chuck out everything but jpgs
     var extension = element['src'].substring(
       element['src'].lastIndexOf('.') + 1).toLowerCase();
 

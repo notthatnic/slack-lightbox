@@ -34,8 +34,8 @@
     maxImageHeight = window.innerHeight - (navButtonMargin * 2) - captionHeight,
     maxImageWidth = window.innerWidth - ((navButtonWidth * 2) +
       (navButtonMargin * 4)),
-    linkoutIcon = '<i class="fa fa-external-link fa-2x"></i>',
-    downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>',
+    linkoutIcon = '<i class="fa fa-external-link v-text-2"></i>',
+    downloadIcon = '<i class="fa fa-cloud-download v-text-2"></i>',
     isDownloadAttrSupported =
       (navigator.userAgent.toLowerCase().indexOf('chrome') > -1);
 
@@ -145,6 +145,7 @@
    */
   var _buildUI = function() {
     $overlayEl = document.querySelector('id-overlay');
+
     // Check if the overlay already exists
     if($overlayEl) {
       $previousButtonEl = document.querySelector('id-previous-button');
@@ -170,12 +171,14 @@
     $previousButtonEl = document.createElement('button');
     $previousButtonEl.classList.add('id-previous-button', 'ui-round-button',
       'v-bg-black-75', 'v-bordercolor-white', 'u-margin-left-1');
-    $previousButtonEl.innerHTML = '<span class="ui-chevron left"></span>';
+    $previousButtonEl.innerHTML =
+      '<i class="fa fa-angle-left fa-2x v-font-white"></i>';
     $overlayEl.appendChild($previousButtonEl);
 
     // create loading spinner, add classes, and append to overlay
     $spinnerEl = document.createElement('span');
-    $spinnerEl.classList.add('ui-spinner', 'u-hidden');
+    $spinnerEl.classList.add('fa', 'fa-refresh', 'fa-spin', 'fa-2x',
+      'v-font-lightgray');
     $overlayEl.appendChild($spinnerEl);
 
     // create a container for the image, caption, and close button
@@ -197,6 +200,7 @@
       'u-position-relative', 's-flex', 'u-flex-alignitems-center');
     $imageContainerEl.appendChild($captionEl);
 
+    // create actions container and actions
     $imageActionsEl = document.createElement('div');
     $imageActionsEl.classList.add('u-margin-left-auto', 'u-margin-right-1');
     $imageLinkOutEl = document.createElement('a');
@@ -220,7 +224,8 @@
     $nextButtonEl = document.createElement('button');
     $nextButtonEl.classList.add('id-next-button', 'ui-round-button',
       'v-bg-black-75', 'v-bordercolor-white', 'u-margin-right-1');
-    $nextButtonEl.innerHTML = '<span class="ui-chevron right"></span>';
+    $nextButtonEl.innerHTML =
+      '<i class="fa fa-angle-right fa-2x v-font-white"></i>';
     $overlayEl.appendChild($nextButtonEl);
 
     // create close button, add classes, and append to image container
@@ -228,7 +233,7 @@
     $closeButtonEl.classList.add('id-close-button', 'ui-round-button-small',
       'v-bg-black-75', 'v-bordercolor-white', 'v-font-white',
       'u-position-absolute', 'u-top-neg1', 'u-right-neg1');
-    $closeButtonEl.innerHTML = 'X';
+    $closeButtonEl.innerHTML = '<i class="fa fa-times fa-1x v-font-white"></i>';
     $imageContainerEl.appendChild($closeButtonEl);
 
     // once all elemnts are created, bind events to them
