@@ -407,7 +407,7 @@
    * @param {element} $buttonEl button element
    */
   var _enableButton = function($buttonEl) {
-    $buttonEl.classList.remove('v-opacity-25', 'v-cursor-pointer');
+    $buttonEl.classList.remove('v-opacity-25', 'v-cursor-arrow');
     $buttonEl.removeAttribute('disabled');
   };
 
