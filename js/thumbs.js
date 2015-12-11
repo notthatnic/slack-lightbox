@@ -14,11 +14,13 @@
 
 }(this, function () {
 
-  DOMTokenList.prototype.add    = function () {
-    Array.prototype.forEach.call(arguments, add.bind(this));
+  var domTokenList = DOMTokenList.prototype;
+
+  domTokenList.add    = function () {
+    Array.prototype.forEach.call(arguments, domTokenList.add.bind(this));
   };
-  DOMTokenList.prototype.remove = function () {
-    Array.prototype.forEach.call(arguments, rem.bind(this));
+  domTokenList.remove = function () {
+    Array.prototype.forEach.call(arguments, domTokenList.remove.bind(this));
   };
 
   /**

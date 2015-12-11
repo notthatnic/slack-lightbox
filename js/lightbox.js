@@ -14,13 +14,6 @@
 
 }(this, function () {
 
-  DOMTokenList.prototype.add    = function () {
-    Array.prototype.forEach.call(arguments, add.bind(this));
-  };
-  DOMTokenList.prototype.remove = function () {
-    Array.prototype.forEach.call(arguments, rem.bind(this));
-  };
-
   //declare and initialize vars
   var $overlayEl,
     $previousButtonEl,
@@ -43,7 +36,15 @@
       (navButtonMargin * 4)),
     linkoutIcon = '<i class="fa fa-external-link fa-2x"></i>',
     downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>',
-    isDownloadAttrSupported = ("download" in document.createElement("a"));
+    isDownloadAttrSupported = ("download" in document.createElement("a")),
+    domTokenList = DOMTokenList.prototype;
+
+  domTokenList.add    = function () {
+    Array.prototype.forEach.call(arguments, domTokenList.add.bind(this));
+  };
+  domTokenList.remove = function () {
+    Array.prototype.forEach.call(arguments, domTokenList.remove.bind(this));
+  };
 
   /**
    * bind event utility (private)
