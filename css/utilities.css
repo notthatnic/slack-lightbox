@@ -310,6 +310,6 @@
    Overflow
    ========================================================================== */
 
-.u-overflow-scroll {
-  overflow: scroll;
+.u-overflowy-scroll {
+  overflow-y: scroll;
 }
