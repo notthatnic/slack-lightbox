@@ -35,6 +35,23 @@ body {
   color: #555459;
 }
 
+.v-font-yellow {
+  color: #dfa941;
+}
+
+.v-font-aubergine {
+  color: #4D394B;
+}
+
+.v-font-green {
+  color: #2ab27b;
+}
+
+.v-font-blue {
+  color: #2a80b9;
+}
+
+
 /* font styling
    ========================================================================== */
 
@@ -56,6 +73,10 @@ body {
 
 .v-font-uppercase {
   text-transform: uppercase;
+}
+
+.v-font-italics {
+  font-style: italic;
 }
 
 /* font sizing
@@ -127,6 +148,10 @@ body {
   background-color: #4D394B;
 }
 
+.v-bg-green {
+  background-color: #2ab27b;
+}
+
 /* ==========================================================================
    Borders
    ========================================================================== */
@@ -157,6 +182,10 @@ body {
 
 .v-list-bulletless {
   list-style: none;
+}
+
+.v-list-insidebullet {
+  list-style-position: inside;
 }
 
 /* ==========================================================================

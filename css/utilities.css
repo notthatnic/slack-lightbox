@@ -79,6 +79,10 @@
   margin: 0;
 }
 
+.u-margin-top-0 {
+  margin-top: 0;
+}
+
 .u-margin-1 {
   margin: 1rem 1rem;
 }
@@ -97,6 +101,10 @@
 
 .u-margin-right-1 {
   margin-right: 1rem;
+}
+
+.u-margin-top-2 {
+  margin-top: 2rem;
 }
 
 .u-margin-auto {
@@ -208,7 +216,7 @@
    Flexbox utilities
    ========================================================================== */
 .u-flex-alignitems-center {
-  align-items: center
+  align-items: center;
 }
 
 .u-flex-justifycontent-spacebetween {

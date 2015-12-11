@@ -116,6 +116,22 @@
 }
 
 /* ==========================================================================
+   Squarish buttons
+   ========================================================================== */
+.ui-button {
+  border-radius: .25rem;
+  text-decoration: none;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+  border: none;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+  padding: .5rem 1rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
    Round buttons
    ========================================================================== */
 .ui-round-button,
@@ -131,6 +147,7 @@
   width: 3rem;
 }
 
+
 .ui-round-button-small {
   height: 2rem;
   width: 2rem;
@@ -139,4 +156,18 @@
 .ui-round-button:disabled,
 .ui-round-button-small:disabled {
   cursor: default;
+}
+
+/* ==========================================================================
+   scrollbar backing
+   ========================================================================== */
+.ui-scrollbar-backing:after {
+  content: '';
+  background-color: #f3f3f3;
+  height: 100%;
+  width: 8px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 8px;
 }
