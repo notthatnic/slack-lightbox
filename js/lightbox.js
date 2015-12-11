@@ -36,15 +36,7 @@
       (navButtonMargin * 4)),
     linkoutIcon = '<i class="fa fa-external-link fa-2x"></i>',
     downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>',
-    isDownloadAttrSupported = ("download" in document.createElement("a")),
-    domTokenList = DOMTokenList.prototype;
-
-  domTokenList.add    = function () {
-    Array.prototype.forEach.call(arguments, domTokenList.add.bind(this));
-  };
-  domTokenList.remove = function () {
-    Array.prototype.forEach.call(arguments, domTokenList.remove.bind(this));
-  };
+    isDownloadAttrSupported = ("download" in document.createElement("a"));
 
   /**
    * bind event utility (private)

@@ -14,15 +14,6 @@
 
 }(this, function () {
 
-  var domTokenList = DOMTokenList.prototype;
-
-  domTokenList.add    = function () {
-    Array.prototype.forEach.call(arguments, domTokenList.add.bind(this));
-  };
-  domTokenList.remove = function () {
-    Array.prototype.forEach.call(arguments, domTokenList.remove.bind(this));
-  };
-
   /**
    * bind event utility (private)
    * @param {element} element DOM element to which to bind the event
