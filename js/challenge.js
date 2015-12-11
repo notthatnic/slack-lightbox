@@ -10,7 +10,7 @@ var xhr = new XMLHttpRequest(),
 var transferComplete = function(event) {
   var galleryData;
   if (this.status == 200) {
-    galleryData = this.response;
+    galleryData = JSON.parse(this.response);
     thumbSpinner.classList.add('u-hidden');
 
     Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true,
@@ -54,7 +54,7 @@ var startLightbox = function() {
 
 xhr.open('GET', 'https://api.imgur.com/3/gallery/t/Aww/top/day/0');
 xhr.setRequestHeader('Authorization', 'Client-ID 09d4b221f16a712');
-xhr.responseType = 'json';
+xhr.responseType = 'text';
 xhr.addEventListener('load', transferComplete);
 xhr.addEventListener('error', transferFailed);
 
