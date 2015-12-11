@@ -36,7 +36,8 @@
       (navButtonMargin * 4)),
     linkoutIcon = '<i class="fa fa-external-link fa-2x"></i>',
     downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>',
-    isDownloadAttrSupported = ("download" in document.createElement("a"));
+    isDownloadAttrSupported =
+      (navigator.userAgent.toLowerCase().indexOf('chrome') > -1);
 
   /**
    * bind event utility (private)

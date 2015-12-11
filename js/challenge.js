@@ -2,11 +2,12 @@
  * Page specific js for challenge.html.
  */
 
+// Because even the most recent versions of IE don't support adding multiple
+// classes to an element's classList at once, I have to use this polyfill
 (function () {
   /*global DOMTokenList */
   var dummy  = document.createElement('div'),
     dtp    = DOMTokenList.prototype,
-    toggle = dtp.toggle,
     add    = dtp.add,
     rem    = dtp.remove;
 
@@ -22,45 +23,55 @@
       Array.prototype.forEach.call(arguments, rem.bind(this));
     };
   }
-
-  // Older versions of the spec didn't have a forcedState argument for
-  // `toggle` either, test by checking the return value after forcing
-  if (!dummy.classList.toggle('class1', true)) {
-    dtp.toggle = function (cls, forcedState) {
-      if (forcedState === undefined)
-        return toggle.call(this, cls);
-
-      (forcedState ? add : rem).call(this, cls);
-      return !!forcedState;
-    };
-  }
 })();
 
+// declare vars and target elements
 var xhr = new XMLHttpRequest(),
   thumbWrapper = document.getElementsByClassName('id-thumbs-wrapper')[0],
   thumbSpinner = document.getElementsByClassName('id-thumbs-spinner')[0],
   thumbError = document.getElementsByClassName('id-thumbs-error')[0];
 
+/**
+ * callback for XMLHttpRequest transfer completion
+ * @param {event} event event to listen for
+ */
 var transferComplete = function(event) {
   var galleryData;
   if (this.status == 200) {
+
+    // parse response data into JSON
     galleryData = JSON.parse(this.response);
+
+    // hide the spinner class
     thumbSpinner.classList.add('u-hidden');
 
+    // create thumbs
     Thumbs.paintThumbs(parseImgData(galleryData), thumbWrapper, true,
       startLightbox);
   }
 };
 
+
+/**
+ * callback for XMLHttpRequest transfer failure
+ * @param {event} event event to listen for
+ */
 var transferFailed = function(event) {
+
+  // display basic error message
   thumbError.innerHTML = 'Image data could not be loaded';
 };
 
+/**
+ * turn api response data into more manageable object
+ * @param {object} galleryObj json response data object
+ */
 var parseImgData = function(galleryObj) {
   var trimmedGalleryArr = [],
     imageItems = galleryObj.data.items,
     element = {};
 
+  // pull out just the data we care about
   imageItems.forEach(function(item){
     element = {};
     element.src = item.link;
@@ -82,12 +93,19 @@ var parseImgData = function(galleryObj) {
   return trimmedGalleryArr;
 };
 
+/**
+ * initialize lightbox
+ */
 var startLightbox = function() {
   Lightbox.init('id-thumbs-wrapper');
 };
 
+
+// get data from Imgur api
 xhr.open('GET', 'https://api.imgur.com/3/gallery/t/Aww/top/day/0');
 xhr.setRequestHeader('Authorization', 'Client-ID 09d4b221f16a712');
+// IE doesn't seem to respect the setting of a responsetype of JSON, so I'm
+// setting this to text and will just parse into JSON once the data is returned
 xhr.responseType = 'text';
 xhr.addEventListener('load', transferComplete);
 xhr.addEventListener('error', transferFailed);
