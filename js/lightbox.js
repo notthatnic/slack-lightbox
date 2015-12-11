@@ -23,6 +23,8 @@
     $imageEl,
     $captionEl,
     $imageActionsEl,
+    $imageDownloadEl,
+    $imageLinkOutEl,
     $spinnerEl,
     gallery = [],
     currentImageIndex = 0,
@@ -32,7 +34,9 @@
     maxImageHeight = window.innerHeight - (navButtonMargin * 2) - captionHeight,
     maxImageWidth = window.innerWidth - ((navButtonWidth * 2) +
       (navButtonMargin * 4)),
-    downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>';
+    linkoutIcon = '<i class="fa fa-external-link fa-2x"></i>',
+    downloadIcon = '<i class="fa fa-cloud-download fa-2x"></i>',
+    isDownloadAttrSupported = ("download" in document.createElement("a"));
 
   /**
    * bind event utility (private)
@@ -192,11 +196,24 @@
       'u-position-relative', 's-flex', 'u-flex-alignitems-center');
     $imageContainerEl.appendChild($captionEl);
 
-    $imageActionsEl = document.createElement('a');
-    $imageActionsEl.classList.add('u-margin-left-auto', 'u-margin-right-1',
-      'v-font-white');
-    $imageActionsEl.setAttribute('target', '_blank');
-    $imageActionsEl.innerHTML = downloadIcon;
+    $imageActionsEl = document.createElement('div');
+    $imageActionsEl.classList.add('u-margin-left-auto', 'u-margin-right-1');
+    $imageLinkOutEl = document.createElement('a');
+    $imageLinkOutEl.classList.add('v-font-white');
+    $imageLinkOutEl.setAttribute('target', '_blank');
+    $imageLinkOutEl.innerHTML = linkoutIcon;
+
+    $imageActionsEl.appendChild($imageLinkOutEl);
+
+    // if direct download is supported, add an extra download link
+    if(isDownloadAttrSupported) {
+      $imageDownloadEl = document.createElement('a');
+      $imageDownloadEl.classList.add('v-font-white', 'u-margin-left-1');
+      $imageDownloadEl.setAttribute('download', true);
+      $imageDownloadEl.innerHTML = downloadIcon;
+
+      $imageActionsEl.appendChild($imageDownloadEl);
+    }
 
     // create next button, add classes, add chevron, and append to overlay
     $nextButtonEl = document.createElement('button');
@@ -305,7 +322,11 @@
       ' u-maxwidth-75 u-truncate">' +
       currentImage.title + '</p>';
     $captionEl.appendChild($imageActionsEl);
-    $imageActionsEl.setAttribute('href', currentImage.src);
+    $imageLinkOutEl.setAttribute('href', currentImage.src);
+
+    if($imageDownloadEl) {
+      $imageDownloadEl.setAttribute('href', currentImage.src);
+    }
 
     // size the caption wrapper to the same size as image
     $captionEl.setAttribute('style', 'width: ' + resizedDimensions.width +
