@@ -157,11 +157,15 @@ body {
    ========================================================================== */
 
 .v-border-1 {
-  border: 1px solid #CCC;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCC;
 }
 
 .v-border-1-top {
-  border-top: 1px solid #CCC;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: #CCC;
 }
 
 .v-bordercolor-white {
@@ -172,8 +176,20 @@ body {
   border-color: #E8E8E8;
 }
 
+.v-borderradius-quarter {
+  border-radius: .25rem;
+}
+
+.v-borderradius-half {
+  border-radius: .5rem;
+}
+
 .v-borderradius-1 {
-  border-radius: 4px;
+  border-radius: 1rem;
+}
+
+.v-borderwidth-1 {
+  border-width: 1px;
 }
 
 /* ==========================================================================

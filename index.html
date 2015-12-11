@@ -24,7 +24,7 @@
     <h1 class="v-text-1">Lightbox</h1>
   </div>
 </header>
-<section class="s-flex s-full-height">
+<section class="s-flex s-full-height u-flex-alignitems-stretch">
   <div class="s-column-fixed s-column-220 v-bg-aubergine v-font-white-50
     v-fontweight-light u-padding-1">
     <p class="u-margin-top-0 v-lineheight-2">I know, I wrote a lot to introduce
@@ -32,13 +32,16 @@
       the code, you can click on the button below.</p>
     <p class="u-margin-top-2">
       <a href="challenge.html" class="ui-button v-bg-green v-font-white">
-        View Challenge Page
+        View Demo Page
       </a>
     </p>
   </div>
-  <div class="s-column-fluid u-padding-1 u-position-relative
-    ui-scrollbar-backing v-font-gray v-text-4 v-lineheight-2">
-    <h3 class="v-text-3">The challenge</h3>
+  <div class="s-column-fluid u-padding-1 u-padding-right-2 u-padding-left-2
+    u-position-relative v-font-gray v-text-4
+    v-lineheight-2 u-overflow-scroll u-height-100noheader">
+    <p>Hello. My name is Nicole Rosenberg, and this is my Slack code challenge
+      submission.</p>
+    <h3 class="v-text-2 u-margin-top-2">The challenge</h3>
     <p>The description of the challenge, as I receieved it, is as follows:</p>
     <blockquote class="v-font-italics u-margin-left-half">
       <p>This exercise is meant to demonstrate:</p>
@@ -56,55 +59,155 @@
     </blockquote>
     <p>Cool.</p>
 
-    <h3 class="v-text-3">My approach</h3>
+    <h3 class="v-text-2 u-margin-top-2">My approach</h3>
     <p>
       I like having a lot of visibility into
-      the feature development lifecycle. I can be a better engineer when I
-      understand the fundamental goals of a feature, if for no other reason than it makes me better able to evaluate if the
-      proposed implementation the right one (for the user, for the codebase,
-      etc.).
+      the full feature development lifecycle. I can be a better engineer when I
+      understand the fundamental goals of a feature because, among other things,
+      it allows me to evaluate if the proposed implementation is the best one
+      (for the user, for the codebase, etc.).
     </p>
 
     <p>
       To that end, I decided to create some context for the development of a
-      feature that would require a lightbox. I used
-      myself and my weirdo friends as a stand in for the user population of
-      Slack because a) we actually use the product regularly, b) I have insight into our
-      needs as users, and c) it’s my challenge and I can do what I want.
+      feature that would require a lightbox. I used myself and my weirdo friends
+      as a proxy for the user population of Slack because a) we actually use the
+      product regularly, b) I have insight into our needs as users, and c) it’s
+      my challenge and I can do what I want.
     </p>
 
     <p>So here’s the use case:</p>
 
-    <blockquote>
+    <blockquote class="v-font-italics u-margin-left-half">
       <p>
-        Nicole et al have developed a very visual conversational style. As
-        lovers of reaction gifs and infographics, Slack channels are full of each.
+        Slack users (i.e. Nicole et al) have developed a very visual
+        conversational style. As lovers of reaction gifs and infographics, their
+        Slack channels are full of each.
       </p>
 
       <p>
-        These users are HipChat refugees, a land where there was no giphy
-        integration, and as such most have curated libraries of reaction gifs
-        from across the web. These images are often shared as links (as opposed
-        to uploading files).
+        These users are HipChat refugees, a land where there was no Giphy
+        integration, and as such most individuals have come to rely on reaction
+        gifs from pulled across the web. These images are often shared as links,
+        but they will also occasionally upload images as well.
       </p>
 
       <p>
-        Users have expressed a desire for an easy way to browse images shared to
-        a channel.
+        Users have expressed a desire for an easy way to browse all images (but
+        just images) shared to a channel. They also need a way to download/get a
+        link to individual images so that they can reuse/share it.
       </p>
+
     </blockquote>
 
-    <h3 class="v-text-3">A note about the CSS</h3>
-    <p>I decided to use an atomic/functional approach to the styles, because:</p>
+    <p>
+      The feature should allow users to quickly scan shared images and then get
+      at its source. My solution is to create a new section in the channel
+      details that collects uploaded/linked to images and displays their
+      thumbnails. Clicking on a thumbnail spawns a lightbox which shows the
+      image and provides a 'download' action.
+    </p>
+
+    <p>
+      I dummied up a Slack interface (it's not 100% accurate, but hopefully
+      gives you a good enough idea), and added the new feature section. If
+      you're eager to just see it already, you can
+      <a href="challenge.html">go to the challenge demo page</a>. But you've
+      come this far, might as well keep reading.
+
+    </p>
+
+    <h3 class="v-text-2 u-margin-top-2">A note about the CSS</h3>
+    <p>
+      I decided to use an atomic/functional approach to the styles, because:
+    </p>
     <ul class="v-list-insidebullet">
-      <li>it helps enforce design consistency</li>
-      <li>it's easier to make small changes to visual components without fighting inheritance and specificity</li>
+      <li>
+        it's easier to make small changes to visual components without
+        fighting inheritance and specificity
+      </li>
       <li>it can help keep overall stylesheet file size down</li>
+      <li>it can help enforce design consistency throughout an app</li>
     </ul>
 
-    <p>I've opened with the benefits of this approach because anyone seeing the proliferation of classes that come with functional CSS for the first time is at high risk of table-flipping and hair-rending. I’m not indifferent to the fact that the markup starts to look a little nutso, but the performance benefits of smaller stylesheets vastly outweigh any hits taken from verbose HTML.</p>
+    <p>
+      Anyone seeing the proliferation of classes that comes with a functional
+      CSS approach for the first time is at an increased risk of table-flipping
+      and hair-rending. I’m not indifferent to the fact that the markup starts
+      to look a little nutso, but the performance benefits of smaller
+      stylesheets vastly outweigh any hits taken from verbose HTML.
+    </p>
+
+    <h3 class="v-text-2 u-margin-top-2">
+      Next Steps (a.k.a. How to evolve the feature, a.k.a Stuff I didn't do)
+    </h3>
+
+    <p>
+      Currently this feature is very much in a proof-of-concept state. The
+      following are next steps to get this to MVP.
+    </p>
+
+    <p class="v-text-4 v-fontweight-bold">Make the lightbox responsive</p>
+    <p>
+      The current implementation does not respond to window resize. At a
+      minimum, the overlay should resize with window resize, but really both
+      the overlay and images would resize. Ideally, the buttons would also
+      shrink below a certain breakpoint.
+    </p>
+
+    <p class="v-text-4 v-fontweight-bold">
+      Make the lightbox module more reusable
+    </p>
+
+    <ul class="v-list-insidebullet">
+      <li>Allow developers to customize the lightbox actions</li>
+      <li>
+        Allow for multiple but distinct galleries to be instantiated on a single
+        page
+      </li>
+      <li>Add more customizable options</li>
+    </ul>
+
+    <p class="v-text-4 v-fontweight-bold">Improve the UI</p>
+    <ul class="v-list-insidebullet">
+
+      <li>Smooth out the loading of the thumbnails with transitions</li>
+      <li>Clip thumbnail background</li>
+      <li>
+        Build out a 'more images' experience. A good approach would be to use
+        a similar pattern as the current 'Shared Files' feature in Slack. At
+        a certain number of thumbnails, a 'View all images' link is provided.
+        That link would take users to a paginated image list experience.
+      </li>
+      <li>Develop a better icon strategy</li>
+    </ul>
+
+    <p class="v-text-4 v-fontweight-bold">
+      Optimize the page for percieved load time
+    </p>
+    <ul class="v-list-insidebullet">
+      <li>JS and CSS files should be minified and concatenated</li>
+      <li>Resources should be gzipped or otherwise compressed</li>
+      <li>
+        Optimize the thumbnails; programmatically create smaller versions to
+        decrease load time
+      </li>
+    </ul>
+
+    <p class="v-text-4 v-fontweight-bold">Improve the build process</p>
+    <ul class="v-list-insidebullet">
+      <li>
+        Use a css pre/post-processor (preferably homegrown). At a minimum, it's
+        faster and safer to store things like colors in variables that get
+        re-used across the CSS.
+      </li>
+      <li>Use templating for the markup</li>
+      <li>Leverage build tools</li>
+    </ul>
+
   </div>
-  <aside class="s-column-fixed s-column-415 u-padding-1">
+  <aside class="s-column-fixed s-column-415 u-padding-1
+    ui-scrollbar-backing-shame u-position-relative">
     <header class="v-text-1 u-margin-bottom-1 v-font-gray">
       About this candidate
     </header>
@@ -142,7 +245,7 @@
             <i class="fa fa-child fa-1x"></i>
           </span>
         <h4 class="v-text-2 v-lineheight-1 v-fontweight-normal v-font-gray">
-          Severly Out-of-date portfolio
+          Severly out-of-date portfolio
         </h4>
       </header>
       <p><a href="http://nicolerosenberg.com/">nicolerosenberg.com</a></p>

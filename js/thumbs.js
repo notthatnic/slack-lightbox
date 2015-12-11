@@ -55,7 +55,7 @@
 
       // add classes to the new elements
       $linkEl.classList.add('u-margin-right-nudge', 'class-thumbnail');
-      $imageEl.classList.add('v-borderradius-1',
+      $imageEl.classList.add('v-borderradius-quarter',
         'v-boxshadow-inset-1');
 
       // add necessary attributes: src, title, height, and width

@@ -24,6 +24,10 @@
 .u-display-block {
   display: block;
 }
+
+.u-display-inlineblock {
+  display: inline-block;
+}
 /* ==========================================================================
    Positioning
    ========================================================================== */
@@ -105,6 +109,10 @@
 
 .u-margin-top-2 {
   margin-top: 2rem;
+}
+
+.u-margin-bottom-2 {
+  margin-bottom: 2rem;
 }
 
 .u-margin-auto {
@@ -212,11 +220,27 @@
   padding-right: 1rem;
 }
 
+.u-padding-right-2 {
+  padding-right: 2rem;
+}
+
+.u-padding-left-2 {
+  padding-left: 2rem;
+}
+
+.u-padding-left-0 {
+  padding-left: 0;
+}
+
 /* ==========================================================================
    Flexbox utilities
    ========================================================================== */
 .u-flex-alignitems-center {
   align-items: center;
+}
+
+.u-flex-alignitems-stretch {
+  align-items: stretch;
 }
 
 .u-flex-justifycontent-spacebetween {
@@ -225,6 +249,10 @@
 
 .u-flex-wrap {
   flex-wrap: wrap;
+}
+
+.u-flexgrow-1 {
+  flex-grow: 1;
 }
 
 /* ==========================================================================
@@ -239,6 +267,10 @@
   width: 100vw;
 }
 
+.u-minheight-100 {
+  min-height: 100%;
+}
+
 .u-maxheight-100 {
   max-height: 100%;
 }
@@ -251,6 +283,10 @@
   max-width: 75%;
 }
 
+.u-width-100 {
+  width: 100%;
+}
+
 .u-height-1 {
   height: 1rem;
 }
@@ -259,8 +295,19 @@
   height: 4rem;
 }
 
+.u-height-100noheader {
+  height: calc(100% - 3.5rem);
+}
+
 .u-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* ==========================================================================
+   Overflow
+   ========================================================================== */
+.u-overflow-scroll {
+  overflow: scroll;
 }
