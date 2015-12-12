@@ -333,10 +333,10 @@
       ' u-maxwidth-75 u-truncate">' +
       currentImage.title + '</p>';
 
-    $imageLinkOutEl.setAttribute('href', currentImage.src);
+    $imageLinkOutEl.href = currentImage.src;
 
     if($imageDownloadEl) {
-      $imageDownloadEl.setAttribute('href', currentImage.src);
+      $imageDownloadEl.href = currentImage.src;
     }
 
     $captionEl.appendChild($imageActionsEl);

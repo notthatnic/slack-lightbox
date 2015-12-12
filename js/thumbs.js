@@ -71,7 +71,7 @@
       $imageLoaderEl.src = image.src;
 
       // add necessary attributes: src, title, height, and width
-      $linkEl.setAttribute('href', image.src);
+      $linkEl.href = image.src;
       $imageEl.setAttribute('style',
         'background-image: url(' + image.src + '); height: 50px; width: 50px;');
       $imageEl.setAttribute('title', image.title);
