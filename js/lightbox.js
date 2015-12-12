@@ -323,16 +323,23 @@
       _enableButton($previousButtonEl);
     }
 
+    // remove image actions
+    if ($imageActionsEl.parentNode === $captionEl) {
+      $captionEl.removeChild($imageActionsEl);
+    }
+
     // update the caption text
     $captionEl.innerHTML = '<p class="u-margin-0 u-padding-1' +
       ' u-maxwidth-75 u-truncate">' +
       currentImage.title + '</p>';
-    $captionEl.appendChild($imageActionsEl);
+
     $imageLinkOutEl.setAttribute('href', currentImage.src);
 
     if($imageDownloadEl) {
       $imageDownloadEl.setAttribute('href', currentImage.src);
     }
+
+    $captionEl.appendChild($imageActionsEl);
 
     // size the caption wrapper to the same size as image
     $captionEl.setAttribute('style', 'width: ' + resizedDimensions.width +
